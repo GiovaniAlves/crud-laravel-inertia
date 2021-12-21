@@ -9,22 +9,31 @@
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                     <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
 
-                        <div
+                        <InputError
                             v-if="errors"
                             v-for="error in errors"
-                            :key="error.email">
-                                {{ error }}
-                        </div>
+                            :key="error.email"
+                            :message="error">
+                            {{ error }}
+                        </InputError>
 
                         <form @submit.prevent="submit">
-                            <label for="name">Nome:</label>
-                            <input type="text" id="name" v-model="form.name" />
-                            <label for="email">Email:</label>
-                            <input type="email" id="email" v-model="form.email" />
-                            <label for="password">Senha:</label>
-                            <input type="password" id="password" v-model="form.password" />
+                            <div class="mt-4">
+                                <jet-label for="name" value="Nome" />
+                                <input type="text" id="name" class="mt-1 block w-full" v-model="form.name" />
+                            </div>
 
-                            <button type="submit">Salvar</button>
+                            <div class="mt-4">
+                                <jet-label for="email" value="Email" />
+                                <input type="email" id="email" class="mt-1 block w-full" v-model="form.email"/>
+                            </div>
+
+                            <div class="mt-4">
+                                <jet-label for="password" value="Senha" />
+                                <input type="password" id="password" class="mt-1 block w-full" v-model="form.password"/>
+                            </div>
+
+                            <jet-button type="submit" class="ma-4 mt-3" :class="{ 'opacity-25': form.processing }">Salvar</jet-button>
                         </form>
 
                     </div>
@@ -37,14 +46,18 @@
 <script>
 import AppLayout from "../../Layouts/AppLayout"
 import {Inertia} from "@inertiajs/inertia"
+import InputError from "../../Jetstream/InputError"
+import JetButton from '@/Jetstream/Button.vue'
+import JetInput from '@/Jetstream/Input.vue'
+import JetLabel from '@/Jetstream/Label.vue'
 
 export default {
     name: "Create",
-    components: {AppLayout},
+    components: {InputError, AppLayout, JetButton, JetInput, JetLabel},
     props: {
         errors: Object,
     },
-    data () {
+    data() {
         return {
             form: {
                 name: '',
@@ -54,7 +67,7 @@ export default {
         }
     },
     methods: {
-        submit () {
+        submit() {
             Inertia.post(route('users.store'), this.form)
         }
     }

@@ -29,7 +29,9 @@
                                     <td class="p-3 border">{{ user.id }}</td>
                                     <td class="p-3 border">{{ user.name }}</td>
                                     <td class="p-3 border">{{ user.email }}</td>
-                                    <td class="p-3 border">Ações</td>
+                                    <td class="p-3 border">
+                                        <inertia-link :href="route('users.show', {'user': user})">Detalhes</inertia-link>
+                                    </td>
                             </tr>
                             </tbody>
                         </table>
