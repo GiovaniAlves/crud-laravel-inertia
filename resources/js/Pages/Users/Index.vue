@@ -11,7 +11,7 @@
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                     <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
 
-                        <inertia-link :href="route('user.create')">Criar Usuário</inertia-link>
+                        <inertia-link :href="route('users.create')">Criar Usuário</inertia-link>
 
                         <table class="table-auto w-full">
                             <thead>
