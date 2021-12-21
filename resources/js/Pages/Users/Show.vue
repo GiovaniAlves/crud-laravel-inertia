@@ -9,12 +9,10 @@
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                     <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
 
-                        <form @submit.prevent="submit">
-                            <div class="mt-4">
-                                <jet-label for="name" :value=" 'Nome: ' + customer.name " />
-                                <jet-label for="email" :value=" 'Email: ' + customer.email " />
-                            </div>
-                        </form>
+                        <div class="mt-4">
+                            <jet-label for="name" :value=" 'Nome: ' + customer.name " />
+                            <jet-label for="email" :value=" 'Email: ' + customer.email " />
+                        </div>
 
                     </div>
                 </div>
@@ -31,7 +29,7 @@ export default {
     name: "Show",
     components: {AppLayout, JetLabel},
     props: {
-        customer: Object
+        customer: Object,
     }
 }
 </script>

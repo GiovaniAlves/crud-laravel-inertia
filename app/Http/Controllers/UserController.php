@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreUpdateUserRequest;
+use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -35,10 +36,10 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\StoreUpdateUserRequest $request
+     * @param \Illuminate\Http\StoreUserRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreUpdateUserRequest $request)
+    public function store(StoreUserRequest $request)
     {
         User::create($request->validated());
         return Redirect::route('users.index');
@@ -64,19 +65,22 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $customer = User::find($id);
+        return Inertia::render('Users/Edit', ['customer' => $customer]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\UpdateUserRequest $request
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateUserRequest $request, $id)
     {
-        //
+        $customer = User::find($id);
+        $customer->update($request->validated());
+        return Redirect::route('users.index');
     }
 
     /**

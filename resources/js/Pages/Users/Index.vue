@@ -30,7 +30,8 @@
                                     <td class="p-3 border">{{ user.name }}</td>
                                     <td class="p-3 border">{{ user.email }}</td>
                                     <td class="p-3 border">
-                                        <inertia-link :href="route('users.show', {'user': user})">Detalhes</inertia-link>
+                                        <inertia-link :href="route('users.show', {'user': user.id})">Detalhes </inertia-link>
+                                        <inertia-link :href="route('users.edit', {'user': user.id})"> Editar</inertia-link>
                                     </td>
                             </tr>
                             </tbody>
