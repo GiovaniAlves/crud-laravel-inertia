@@ -9,11 +9,18 @@
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                     <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
 
+                        <div
+                            v-if="errors"
+                            v-for="error in errors"
+                            :key="error.email">
+                                {{ error }}
+                        </div>
+
                         <form @submit.prevent="submit">
                             <label for="name">Nome:</label>
                             <input type="text" id="name" v-model="form.name" />
                             <label for="email">Email:</label>
-                            <input type="text" id="email" v-model="form.email" />
+                            <input type="email" id="email" v-model="form.email" />
                             <label for="password">Senha:</label>
                             <input type="password" id="password" v-model="form.password" />
 
@@ -34,6 +41,9 @@ import {Inertia} from "@inertiajs/inertia"
 export default {
     name: "Create",
     components: {AppLayout},
+    props: {
+        errors: Object,
+    },
     data () {
         return {
             form: {
