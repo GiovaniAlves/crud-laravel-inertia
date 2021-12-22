@@ -28,7 +28,7 @@
                                 <input type="email" id="email" class="mt-1 block w-full" v-model="form.email"/>
                             </div>
 
-                            <jet-button type="submit" class="ma-4 mt-3" :class="{ 'opacity-25': form.processing }">Salvar</jet-button>
+                            <jet-button type="submit" class="ma-4 mt-3" :class="{ 'opacity-25': form.processing }">Atualizar</jet-button>
                         </form>
 
                     </div>
