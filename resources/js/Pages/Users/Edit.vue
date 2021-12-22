@@ -63,7 +63,7 @@ export default {
     },
     methods: {
         submit() {
-            Inertia.put(route('users.update', {'user': this.customer}), this.form)
+            Inertia.put(route('users.update', {'id': this.customer.id}), this.form)
         }
     }
 }
