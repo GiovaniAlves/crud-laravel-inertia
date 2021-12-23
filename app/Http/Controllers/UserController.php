@@ -53,7 +53,7 @@ class UserController extends Controller
     public function store(StoreUserRequest $request)
     {
         User::create($request->validated());
-        return Redirect::route('users.index');
+        return Redirect::route('users.index')->with('message', 'Usuário Criado com Sucesso!');
     }
 
     /**
@@ -91,7 +91,7 @@ class UserController extends Controller
     {
         $customer = User::find($id);
         $customer->update($request->validated());
-        return Redirect::route('users.index');
+        return Redirect::route('users.index')->with('message', 'Usuário Atualizado com Sucesso!');
     }
 
     /**
@@ -104,6 +104,6 @@ class UserController extends Controller
     {
         $customer = User::find($id);
         $customer->delete();
-        return Redirect::route('users.index');
+        return Redirect::route('users.index')->with('message', 'Usuário Deletado com Sucesso!');
     }
 }

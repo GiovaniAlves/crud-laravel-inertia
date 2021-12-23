@@ -6,6 +6,12 @@
             </h2>
         </template>
 
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-3">
+            <div class="bg-green-600 px-6 py-4 shadow rounded" v-if="$page.props.flash.message">
+                <p class="text-white"><strong>{{$page.props.flash.message}}</strong></p>
+            </div>
+        </div>
+
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
@@ -21,7 +27,10 @@
                             method="get"
                             class="mt-4 mb-4 flex"
                             @submit.prevent="submit">
-                                <JetInput v-model="form.filtro" class="w-full" placeholder="Busque por nome ou e-mail..."></JetInput>
+                                <JetInput
+                                    v-model="form.filtro"
+                                    class="w-full"
+                                    placeholder="Busque por nome ou e-mail..."></JetInput>
                                 <button type="submit" class="ml-2 btn btn-primary">Buscar</button>
                         </form>
 
