@@ -6,7 +6,7 @@
             </h2>
         </template>
 
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-3">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-4">
             <div class="bg-green-600 px-6 py-4 shadow rounded" v-if="$page.props.flash.message">
                 <p class="text-white"><strong>{{$page.props.flash.message}}</strong></p>
             </div>

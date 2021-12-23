@@ -91,6 +91,11 @@ class UserController extends Controller
     {
         $customer = User::find($id);
         $customer->update($request->validated());
+
+        //Estou usando o request global pq não validei o avatar
+        if (request()->hasFile('avatar')) {
+            $customer->updateProfilePhoto(request()->file('avatar'));
+        }
         return Redirect::route('users.index')->with('message', 'Usuário Atualizado com Sucesso!');
     }
 
