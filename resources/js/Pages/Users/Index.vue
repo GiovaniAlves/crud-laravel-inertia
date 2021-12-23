@@ -11,8 +11,19 @@
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                     <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
 
-                        <inertia-link class="btn btn-secondary" :href="route('users.create')">Criar Usuário
+                        <inertia-link
+                            class="btn btn-secondary inline-flex"
+                            :href="route('users.create')">
+                            Criar Usuário
                         </inertia-link>
+
+                        <form
+                            method="get"
+                            class="mt-4 mb-4 flex"
+                            @submit.prevent="submit">
+                                <JetInput v-model="form.filtro" class="w-full" placeholder="Busque por nome ou e-mail..."></JetInput>
+                                <button type="submit" class="ml-2 btn btn-primary">Buscar</button>
+                        </form>
 
                         <table class="table-auto w-full">
                             <thead>
@@ -25,7 +36,7 @@
                             </thead>
                             <tbody>
                             <tr
-                                v-for="user in users"
+                                v-for="user in users.data"
                                 :key="user.id">
                                 <td class="p-3 border">{{ user.id }}</td>
                                 <td class="p-3 border">{{ user.name }}</td>
@@ -58,6 +69,10 @@
                             </tr>
                             </tbody>
                         </table>
+
+                        <div class="mt-3">
+                            <Paginator :paginator="users"/>
+                        </div>
                     </div>
                 </div>
 
@@ -94,24 +109,33 @@
 import AppLayout from "@/Layouts/AppLayout"
 import JetButton from '@/Jetstream/Button.vue'
 import JetDialogModal from "@/Jetstream/DialogModal"
+import JetInput from "@/Jetstream/Input"
+import Paginator from "@/Shared/Paginator"
 import {Inertia} from "@inertiajs/inertia"
 
 export default {
     name: "User",
-    components: {AppLayout, JetButton, JetDialogModal},
+    components: {Paginator, AppLayout, JetButton, JetDialogModal, JetInput},
     props: {
-        users: Array
+        users: Object,
+        filtro: String
     },
     data() {
         return {
             modalOpen: false,
-            selectedUser: Object
+            selectedUser: Object,
+            form: {
+                filtro: this.filtro
+            }
         }
     },
     methods: {
         deleteUser() {
             Inertia.delete(this.route('users.destroy', {'id': this.selectedUser.id}))
             this.modalOpen = false
+        },
+        submit () {
+            Inertia.get(route('users.index', this.form))
         }
     }
 }

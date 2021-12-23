@@ -18,9 +18,20 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = new User();
+        $filtro = "";
 
-        return Inertia::render('Users/Index', ['users' => $users]);
+        if (request()->has("filtro")) {
+            $filtro = request("filtro");
+            //filtrando por name ou email
+            $users = $users->where('name', 'like', '%' . $filtro . '%')
+                ->orWhere('email', 'like', '%' . $filtro . '%');
+        }
+
+        // request()->except("page") com isso vou inserir tudo que tiver na url exceto a page que já vem no paginate.
+        $users = $users->paginate(8)->appends(request()->except("page"));
+
+        return Inertia::render('Users/Index', ['users' => $users, 'filtro' => $filtro]);
     }
 
     /**
