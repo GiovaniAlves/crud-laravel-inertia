@@ -10,7 +10,7 @@
 
 <p align="center">
     <a href="https://laravel.com" target="_blank">
-        <img src="https://github.com/GiovaniAlves/crud-laravel-inertia/blob/master/public/img/crud.png?raw=true" width="400">
+        <img src="https://github.com/GiovaniAlves/crud-laravel-inertia/blob/master/public/img/crud.png?raw=true" width="1000">
     </a>
 </p>
 
