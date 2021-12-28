@@ -6,12 +6,6 @@
             </h2>
         </template>
 
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-4">
-            <div class="bg-green-600 px-6 py-4 shadow rounded" v-if="$page.props.flash.message">
-                <p class="text-white"><strong>{{$page.props.flash.message}}</strong></p>
-            </div>
-        </div>
-
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
@@ -121,10 +115,11 @@ import JetDialogModal from "@/Jetstream/DialogModal"
 import JetInput from "@/Jetstream/Input"
 import Paginator from "@/Shared/Paginator"
 import {Inertia} from "@inertiajs/inertia"
+import ActionMessage from "../../Jetstream/ActionMessage";
 
 export default {
     name: "User",
-    components: {Paginator, AppLayout, JetButton, JetDialogModal, JetInput},
+    components: {ActionMessage, Paginator, AppLayout, JetButton, JetDialogModal, JetInput},
     props: {
         users: Object,
         filtro: String

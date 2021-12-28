@@ -86,7 +86,7 @@ export default {
     },
     methods: {
         excluirImagem () {
-            alert('dsads');
+            Inertia.delete(route('users.deleteAvatar', {user: this.customer}))
         },
         submit() {
             Inertia.post(route('users.update', {'id': this.customer.id}), {

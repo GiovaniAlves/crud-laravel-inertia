@@ -18,4 +18,10 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->name('dashboard');
 
-Route::middleware(['auth:sanctum', 'verified'])->resource('/dashboard/users', UserController::class);
+Route::group(['middleware' => ['auth:sanctum', 'verified'], 'prefix' => 'dashboard'], function () {
+    Route::resource('users', UserController::class);
+    Route::delete('users/avatar/delete/{user}', [UserController::class, 'deletarAvatar'])->name('users.deleteAvatar');
+});
+
+
+

@@ -8,13 +8,14 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
+use mysql_xdevapi\Exception;
 
 class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Inertia\Inertia
      */
     public function index()
     {
@@ -37,7 +38,7 @@ class UserController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Inertia\Inertia
      */
     public function create()
     {
@@ -48,23 +49,23 @@ class UserController extends Controller
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\StoreUserRequest $request
-     * @return \Illuminate\Http\Response
+     * @return Illuminate\Support\Facades\Redirect
      */
     public function store(StoreUserRequest $request)
     {
         User::create($request->validated());
-        return Redirect::route('users.index')->with('message', 'Usuário Criado com Sucesso!');
+        return Redirect::back()->with('message', 'Usuário Criado com Sucesso!');
     }
 
     /**
      * Display the specified resource.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return \Inertia\Inertia
      */
-    public function show(int $id)
+    public function show($id)
     {
-        $customer = User::find($id);
+        $customer = User::findOrFail($id);
         return Inertia::render('Users/Show', ['customer' => $customer]);
     }
 
@@ -72,11 +73,11 @@ class UserController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return \Inertia\Inertia
      */
     public function edit($id)
     {
-        $customer = User::find($id);
+        $customer = User::findOrFail($id);
         return Inertia::render('Users/Edit', ['customer' => $customer]);
     }
 
@@ -85,7 +86,7 @@ class UserController extends Controller
      *
      * @param \Illuminate\Http\UpdateUserRequest $request
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return Illuminate\Support\Facades\Redirect
      */
     public function update(UpdateUserRequest $request, $id)
     {
@@ -103,12 +104,24 @@ class UserController extends Controller
      * Remove the specified resource from storage.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return Illuminate\Support\Facades\Redirect
      */
     public function destroy($id)
     {
         $customer = User::find($id);
         $customer->delete();
-        return Redirect::route('users.index')->with('message', 'Usuário Deletado com Sucesso!');
+        return Redirect::back()->with('message', 'Usuário Deletado com Sucesso!');
+    }
+
+    /**
+     * Remove the avatar from storage.
+     *
+     * @param User $user
+     * @return Illuminate\Support\Facades\Redirect
+     */
+    public function deletarAvatar(User $user)
+    {
+        $user->deleteProfilePhoto();
+        return Redirect::back()->with('message', 'Avatar Deletado com sucesso!');
     }
 }
