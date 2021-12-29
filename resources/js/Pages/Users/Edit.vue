@@ -28,10 +28,12 @@
                                 <input type="email" id="email" class="mt-1 block w-full" v-model="form.email"/>
                             </div>
 
-                            <div class="mt-4">
-                                <jet-label for="avatar" value="Avatar" />
-                                <input type="file" id="avatar" class="mt-1 block w-full" @input="form.avatar = $event.target.files[0]" />
-                            </div>
+                            <!--
+                                <div class="mt-4">
+                                    <jet-label for="avatar" value="Avatar" />
+                                    <input type="file" id="avatar" class="mt-1 block w-full" @input="form.avatar = $event.target.files[0]" />
+                                </div>
+                            -->
 
                             <jet-button type="submit" class="ma-4 mt-3" :class="{ 'opacity-25': form.processing }">Atualizar</jet-button>
 

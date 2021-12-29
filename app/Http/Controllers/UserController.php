@@ -96,9 +96,7 @@ class UserController extends Controller
 
         //Estou usando o request global pq não validei o avatar
         if (request()->hasFile('avatar')) {
-            //$customer->updateProfilePhoto(request()->file('avatar'));
-            Storage::disk('public')->put('users/'.md5(time()), request()->file('avatar'));
-            
+            $customer->updateProfilePhoto(request()->file('avatar'));
         }
         return Redirect::route('users.index')->with('message', 'Usuário Atualizado com Sucesso!');
     }
