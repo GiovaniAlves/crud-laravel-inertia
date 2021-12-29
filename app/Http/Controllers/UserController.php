@@ -30,7 +30,7 @@ class UserController extends Controller
         }
 
         // request()->except("page") com isso vou inserir tudo que tiver na url exceto a page que já vem no paginate.
-        $users = $users->paginate(8)->appends(request()->except("page"));
+        $users = $users->orderBy('id')->paginate(8)->appends(request()->except("page"));
 
         return Inertia::render('Users/Index', ['users' => $users, 'filtro' => $filtro]);
     }
@@ -54,7 +54,7 @@ class UserController extends Controller
     public function store(StoreUserRequest $request)
     {
         User::create($request->validated());
-        return Redirect::back()->with('message', 'Usuário Criado com Sucesso!');
+        return Redirect::route('users.index')->with('message', 'Usuário Criado com Sucesso!');
     }
 
     /**

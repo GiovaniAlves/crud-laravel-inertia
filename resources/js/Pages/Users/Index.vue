@@ -24,7 +24,7 @@
                                 <JetInput
                                     v-model="form.filtro"
                                     class="w-full"
-                                    placeholder="Busque por nome ou e-mail..."></JetInput>
+                                    placeholder="Busque pelo nome ou e-mail..."></JetInput>
                                 <button type="submit" class="ml-2 btn btn-primary">Buscar</button>
                         </form>
 
