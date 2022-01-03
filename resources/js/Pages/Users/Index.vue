@@ -84,7 +84,7 @@
                         <h1>Exluir Usuário</h1>
                     </template>
                     <template v-slot:content>
-                        <p v-if="selectedUser">Deseja realmente exluir <strong>{{ selectedUser.email }}</strong>?</p>
+                        <p v-if="selectedUser">Deseja realmente exluir <strong>{{ selectedUser.email }} ?</strong></p>
                     </template>
                     <template v-slot:footer>
 
