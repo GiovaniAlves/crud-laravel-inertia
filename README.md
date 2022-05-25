@@ -6,7 +6,7 @@
 
 ## CRUD Laravel Inertia
 
-#### Foi desenvolvido um CRUD simples e uma busca com laravel e inertiajs
+#### Foi desenvolvido um CRUD simples e uma busca com Laravel, Vue.js e Inertiajs
 
 <p align="center">
     <a href="https://github.com/GiovaniAlves/crud-laravel-inertia/blob/master/public/img/crud.png?raw=true" target="_blank">
